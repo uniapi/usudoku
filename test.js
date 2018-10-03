@@ -213,3 +213,34 @@ it('should solveSudoku very hard', () => {
   const copy = initial.map(r => [...r]);
   assert.equal(isSolved(initial, solveSudoku(copy)), true);
 });
+
+
+/*************************************************************************
+                          Written by Ali Muhammed
+                            uniapi@outlook.com
+                            September 29, 2018
+*************************************************************************/
+const setcase = [
+  { clues: ['A','B','C','D'],
+    sudoku: [
+	  ['','A', '', ''],
+      ['', '', '','A'],
+      ['','B','D', ''],
+      ['', '', '', '']
+    ],
+    solution: [
+	  ['C','A','B','D'],
+      ['B','D','C','A'],
+      ['A','B','D','C'],
+      ['D','C','A','B']
+    ]
+  }
+];
+
+describe("Generic Test", () => {
+  setcase.forEach((set, inx) => it(`${inx+1}`, () => {
+	const solution = solveSudoku(set.sudoku, set.clues);
+    for (let i=0, len=solution.length; i < len; i++)
+		assert.deepEqual(solution[i], set.sudoku[i]);
+  }));
+});
